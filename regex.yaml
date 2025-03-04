@@ -1,0 +1,101 @@
+aws:
+  # Core AWS Credentials
+  AWS_ACCESS_KEY: |
+    (?<![A-Z0-9])(AKIA|A3T|AGPA|AIDA|AROA|AIPA|ANPA|ANVA|ASIA)[A-Z0-9]{16}(?![A-Z0-9])
+  AWS_SECRET_KEY: |
+    (?i)(aws|amazon)?(?<![A-Za-z0-9])([0-9a-zA-Z/+]{40})(?![A-Za-z0-9])
+  AWS_SESSION_TOKEN: |
+    (?i)(aws_session_token|session_token|aws_security_token|x-amz-security-token)[\s:=]+([a-z0-9+/=]{280,400})
+
+  # ARN Patterns
+  AWS_LAMBDA_LAYER_ARN: |
+    arn:aws:lambda:[a-z0-9-]+:\d{12}:layer:[a-zA-Z0-9-_]+:[0-9]+
+  AWS_BACKUP_VAULT_ARN: |
+    arn:aws:backup:[a-z0-9-]+:\d{12}:backup-vault:[a-zA-Z0-9-_]+
+  AWS_IAM_ROLE: |
+    arn:aws:iam::\d+:role/[a-zA-Z0-9+=,.@_-]+
+  AWS_CLOUDFORMATION_ARN: |
+    arn:aws:cloudformation:[a-z0-9-]+:\d{12}:stack/[a-zA-Z0-9-]+/[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}
+  AWS_CLOUDTRAIL_ARN: |
+    arn:aws:cloudtrail:[a-z0-9-]+:\d{12}:trail/[a-zA-Z0-9-_]+
+  AWS_EKS_CLUSTER_ARN: |
+    arn:aws:eks:[a-z0-9-]+:\d{12}:cluster/[a-zA-Z0-9-_]+
+  AWS_SECRETS_MANAGER_ARN: |
+    arn:aws:secretsmanager:[a-z0-9-]+:\d{12}:secret:[a-zA-Z0-9/_+=.@-]+-\w{6}
+  AWS_SNS_TOPIC_ARN: |
+    arn:aws:sns:[a-z0-9-]+:\d{12}:[a-zA-Z0-9-_]+(?::[a-zA-Z0-9-_.]+)?
+  AWS_SQS_ARN: |
+    arn:aws:sqs:[a-z0-9-]+:\d{12}:[a-zA-Z0-9-_]+
+  AWS_SSM_PARAMETER: |
+    arn:aws:ssm:[a-z0-9-]+:\d{12}:parameter/[a-zA-Z0-9./-]+
+  AWS_STEP_FUNCTIONS_ARN: |
+    arn:aws:states:[a-z0-9-]+:\d{12}:[a-z]+:[a-zA-Z0-9-_]+
+  AWS_SAGEMAKER_NOTEBOOK_ARN: |
+    arn:aws:sagemaker:[a-z0-9-]+:\d{12}:notebook-instance/[a-zA-Z0-9-]+
+
+  # Enhanced Infrastructure Patterns
+  AWS_ACCOUNT_ID: |
+    \b[1-9]\d{11}\b
+  AWS_S3_BUCKET: |
+    ([a-z0-9.-]+\.s3(?:-[a-z0-9-]+)?\.amazonaws\.com)
+  AWS_ECR_URI: |
+    \d{12}\.dkr\.ecr\.[a-z0-9-]+\.amazonaws\.com/[a-z0-9_-]+
+  AWS_OPENSEARCH_ENDPOINT: |
+    [a-z0-9-]+\.([a-z0-9-]+\.)?es\.amazonaws\.com
+  AWS_API_GATEWAY_DOMAIN_NAME: |
+    ([a-z0-9-]+\.)?execute-api\.[a-z0-9-]+\.amazonaws\.com
+  AWS_VPC_ENDPOINT: |
+    vpce-[0-9a-f]{17}
+  AWS_CLOUDFRONT_SIGNING_KEY: |
+    (?i)-----BEGIN PRIVATE KEY-----[A-Za-z0-9+/=\s]+-----END PRIVATE KEY-----
+
+  # Service-Specific Secrets
+  AWS_KMS_KEY_ID: |
+    (alias/[a-zA-Z0-9/_-]+|key/[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})
+  AWS_CODEARTIFACT_TOKEN: |
+    (aws codeartifact get-authorization-token --domain).*\s--query\s+"authorizationToken"
+  AWS_APPSYNC_API_KEY: |
+    da2-[a-z0-9]{26}
+  AWS_RDS_CREDENTIALS: |
+    (?i)("|')?(master_?username|master_?user_?password)("|')?\s*[:=]\s*("|')?[a-zA-Z0-9_@#%-]+("|')?
+  AWS_CONNECT_INSTANCE_ID: |
+    (arn:aws:connect:[a-z0-9-]+:\d+:instance/[a-zA-Z0-9-]+|[a-zA-Z0-9-]{32})
+
+  # Framework/Config Patterns
+  AWS_CREDENTIALS_IN_CLI: |
+    aws (configure set|s3 cp) .*(aws_access_key_id|aws_secret_access_key)
+  TERRAFORM_AWS_CREDS: |
+    (aws_access_key|aws_secret_key)\s*=\s*["'][^"']{5,}["']
+  SERVERLESS_CREDENTIALS: |
+    (AWS_ACCESS_KEY_ID|AWS_SECRET_ACCESS_KEY)\s*:\s*[^\s]+
+  AWS_CDK_METADATA: |
+    "@aws-cdk/core:enableStackNameDuplicates":\s*"true"
+
+  # Temporary Credentials
+  AWS_TEMP_CREDS: |
+    (AWS4-HMAC-SHA256 Credential=)(AKIA[0-9A-Z]{16})
+
+common_secrets:
+  # API Keys
+  API_KEY: |
+    (?i)\b(api[-_ ]?(key|secret)|access[-_ ]?key|secret[-_ ]?key)\b\s*[:=]?\s*([a-z0-9$%^&*()\-_+=|{}[\];:",.<>/?]{25,})
+  BEARER_TOKEN: |
+    (eyJhbGciOi[A-Za-z0-9-_]+\.[A-Za-z0-9-_]+\.[A-Za-z0-9-_-]+)|(bearer\s+[a-z0-9-_.]{20,})
+  
+  # Database Credentials
+  DATABASE_URL: |
+    (?i)(postgres|mysql|mongodb|redis)://[a-z0-9_-]+:[a-z0-9_-]+@[a-z0-9.-]+:[0-9]+/[a-z0-9_-]+
+  
+  # Third-Party Services
+  GOOGLE_API_KEY: |
+    AIza[0-9A-Za-z_-]{35}
+  STRIPE_SECRET_KEY: |
+    sk_(live|test)_[0-9a-zA-Z]{24}
+  
+  # Generic Secrets
+  GENERIC_SECRET: |
+    (?i)(password|passwd|pwd|secret|token|auth)[=: ]+([a-z0-9@#$%^&*\-_+=(){}\[\]|\\:;"'<>,.?/]{12,})
+  
+  # Cloud Credentials
+  CLOUD_CREDENTIALS: |
+    (?i)(azure|gcp|ibm)_?(key|secret|token)[=: ]+([a-z0-9\-_]{20,})
