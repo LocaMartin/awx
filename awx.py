@@ -19,11 +19,6 @@ COLORS = {
     'RESET': '\033[0m',
 }
 
-'''
-def load_regex_patterns():
-    regex_path = pkg_resources.resource_filename('awx', 'regex.yaml')
-'''
-
 # Default regex file path (same directory as script)
 DEFAULT_REGEX_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'regex.yaml')
 
