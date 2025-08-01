@@ -1,4 +1,9 @@
-_*AWX* is a specialized tool designed to rapidly identify leaked AWS secrets in web applications. It's particularly valuable for bug bounty hunters and penetration testers, supporting both single targets and large-scale scanning operations._
+<div align="center">
+  <img width="200" height="200" alt="awx" src="https://github.com/user-attachments/assets/a4625b85-522b-4c94-a8e8-9f418074de9b" />
+</div>
+
+**AWX** is a specialized tool designed to rapidly identify leaked AWS secrets in web applications. It's particularly valuable for bug bounty hunters and penetration testers, supporting both single targets and large-scale scanning operations.
+
 #### fags:
 ```bash
 -help: Display usage information
