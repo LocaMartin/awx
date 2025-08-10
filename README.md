@@ -2,6 +2,8 @@
   <img width="200" height="200" alt="awx" src="https://github.com/user-attachments/assets/a4625b85-522b-4c94-a8e8-9f418074de9b" />
 </div>
 
+<div align="center"><img src="https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExY2F2YWR1dmZmcjFqYWxibTBvcnFwNTNmcjkxOWIyaGc2NnVqc2hsciZlcD12MV9naWZzX3NlYXJjaCZjdD1n/vR1dPIYzQmkRzLZk2w/giphy.gif"/></div>
+
 **AWX** is a specialized tool designed to rapidly identify leaked AWS secrets in web applications. It's particularly valuable for bug bounty hunters and penetration testers, supporting both single targets and large-scale scanning operations.
 
 #### fags:
